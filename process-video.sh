@@ -4,7 +4,9 @@
 # script. You'll also need ffmpeg installed on your system. Set for 1080p.
 # AUTHOR: dan hett (hellodanhett@gmail.com)
 
-lessonTitle=$1
+inputFile=$1
+outputFile=$2
+lessonTitle=$3
 
 # create the title screen video from the graphic:
 echo "Creating title screen..."
@@ -20,13 +22,13 @@ ffmpeg -loglevel error -i titleNoMusic.mp4 -i jingle.mp3 -map 0:v -map 1:a -c:v 
 
 # add the graphics overlay to the main tutorial video and convert it:
 echo "Converting tutorial video..."
-ffmpeg -loglevel error -y -i input.mkv -i overlay.png -filter_complex [0]overlay=x=0:y=0[out] -map [out] -map 0:a? tutorial.mp4
+ffmpeg -loglevel error -y -i $inputFile -i overlay.png -filter_complex [0]overlay=x=0:y=0[out] -map [out] -map 0:a? tutorial.mp4
 
 # put the two videos together:
 echo "Merging videos..."
 ffmpeg -loglevel error -i title.mp4 -i tutorial.mp4 \
 -filter_complex "[0:v:0] [0:a:0] [1:v:0] [1:a:0] concat=n=2:v=1:a=1 [v] [a]" \
--map "[v]" -map "[a]" -vsync 2 -y DONE.mp4
+-map "[v]" -map "[a]" -vsync 2 -y $outputFile
 
 # clean up the mess
 echo "Cleaning up..."
