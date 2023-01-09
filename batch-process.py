@@ -2,20 +2,10 @@ import os
 
 videos = [
     {
-        'title': 'Intro to HTML',
-        'input': 'input.mkv',
-        'output': '1-introToHTML.mp4'
-    },
-    {
-        'title': 'A HTML Template',
-        'input': 'input.mkv',
-        'output': '2-HTMLTemplate.mp4'
-    },
-    {
-        'title': 'Lists In HTML',
-        'input': 'input.mkv',
-        'output': '3-introToHTML.mp4'
-    },
+        'title': 'HTML Basics',
+        'input': 'inputs/HTML_Basics.mp4',
+        'output': 'outputs/HTML_Basics.mp4'
+    }
 ]
 
 print("-----------------------------------------")

@@ -22,11 +22,11 @@ ffmpeg -loglevel error -i titleNoMusic.mp4 -i jingle.mp3 -map 0:v -map 1:a -c:v 
 
 # add the graphics overlay to the main tutorial video and convert it:
 echo "Converting tutorial video..."
-ffmpeg -loglevel error -y -i $inputFile -i overlay.png -filter_complex [0]overlay=x=0:y=0[out] -map [out] -map 0:a? tutorial.mp4
+ffmpeg -y -i $inputFile -i overlay.png -filter_complex [0]overlay=x=0:y=0[out] -map [out] -map 0:a? tutorial.mp4
 
 # put the two videos together:
 echo "Merging videos..."
-ffmpeg -loglevel error -i title.mp4 -i tutorial.mp4 \
+ffmpeg -y -i title.mp4 -i tutorial.mp4 \
 -filter_complex "[0:v:0] [0:a:0] [1:v:0] [1:a:0] concat=n=2:v=1:a=1 [v] [a]" \
 -map "[v]" -map "[a]" -vsync 2 -y $outputFile
 
